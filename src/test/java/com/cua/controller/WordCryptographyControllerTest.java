@@ -52,6 +52,12 @@ public class WordCryptographyControllerTest {
                 .content(objectMapper.writeValueAsString(encodeInputRep)))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"wordsString\":\"Ksg!ff Kyc,z\"}"));
+
+        // Test the "Null" input case
+        this.mockMvc.perform(post("/encode")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(null)))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -71,6 +77,12 @@ public class WordCryptographyControllerTest {
                 .content(objectMapper.writeValueAsString(decodeInputRep)))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"wordsString\":\"Enc!de Fuz,y\"}"));
+
+        // Test the "Null" input case
+        this.mockMvc.perform(post("/encode")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(null)))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
