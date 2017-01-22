@@ -3,6 +3,8 @@ package com.cua.controller;
 import com.cua.representation.WordsStringRep;
 import com.cua.service.WordCryptographyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -23,14 +25,14 @@ public class WordCryptographyController {
      * @return JSON - the string after encoding and status 200, or status 400
      */
     @RequestMapping(value = "/encode", method = RequestMethod.POST)
-    public WordsStringRep encodeString(@RequestBody String json) {
+    public ResponseEntity<Object> encodeString(@RequestBody String json) {
         try {
             String outputString = wordCryptographyService.encode(json);
 
-            return new WordsStringRep(outputString);
+            return new ResponseEntity(new WordsStringRep(outputString), HttpStatus.OK);
 
         } catch (Exception e) {
-            return null;
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -42,14 +44,14 @@ public class WordCryptographyController {
      * @return JSON - the string after decoding and status 200, or status 400
      */
     @RequestMapping(value = "/decode", method = RequestMethod.POST)
-    public WordsStringRep decodeString(@RequestBody String json) {
+    public ResponseEntity<Object> decodeString(@RequestBody String json) {
         try {
             String outputString = wordCryptographyService.decode(json);
 
-            return new WordsStringRep(outputString);
+            return new ResponseEntity(new WordsStringRep(outputString), HttpStatus.OK);
 
         } catch (Exception e) {
-            return null;
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 }
