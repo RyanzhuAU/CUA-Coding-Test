@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word Cryptography</title>
+    <script src="/lib/angular.min.js" type="text/javascript"></script>
+    <script src="/js/app.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<div ng-app="cuaTest" ng-controller="wordCryptographyController">
+    <div id="encodeSection">
+        <div>
+            <label for="encodeInput">Please input words to encode: </label>
+            <input id="encodeInput" type="text" ng-model="encodeInput">
+            <button ng-click="encodeString()">Encode</button>
+        </div>
+        <div>
+            <span>Words after decoding are:</span>
+            <span>{{encodeOutput}}</span>
+        </div>
+    </div>
+
+    <div id="decodeSection">
+        <div>
+            <label for="decodeInput">Please input words to decode: </label>
+            <input id="decodeInput" type="text" ng-model="decodeInput">
+            <button ng-click="decodeString()">Decode</button>
+        </div>
+        <div>
+            <span>Words after decoding are:</span>
+            <span>{{decodeOutput}}</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
